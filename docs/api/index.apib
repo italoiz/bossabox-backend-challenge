@@ -1,0 +1,85 @@
+FORMAT: 1A
+HOST: http://api.vuttr-challenge.com/v1
+
+# VUTTR API
+
+## Introdução
+
+VUTTR (Very Useful Tools to Remember) é um repositório de ferramentas onde você
+pode armazenas de forma publica ou privada todas as suas ferramentas do dia a dia.
+**Esta aplicação foi desenvolvida para atender como resolução para o desafio da Bossabox**,
+você pode ver o desafio [aqui](https://www.notion.so/Challenge-Development-ae2173d2bef34a47972244d086d7fd79).
+
+O desafio é divido em duas partes. O *back-end* e aqui é a documentação do mesmo,
+e, o *front-end* que você poderá acessar [aqui](https://app.vuttr-challenge.com/)
+
+## Requisições HTTP permitidas
+
+Operação | Objetivo
+---------|---------
+POST | Para criar um recurso
+PUT | Para atualizar um recurso
+GET | Para obter uma lista de recursos ou um recurso específico
+DELETE | Para remover um recurso
+
+## Códigos de Status HTTP
+
+CÓDIGO HTTP | MENSAGEM | DESCRIÇÃO
+------------|----------|-----------
+200 | OK | Retorno padrão para operações realizadas com sucesso.
+201 | Created | O recurso enviado foi criado com sucesso
+204 | No Content | A operação foi realizada com sucesso, e não é preciso retornar nenhuma informação adicional (Normalmente usado em operações de exclusão)
+400 | Bad Request | Existe algum erro na requisição enviada à API (por exemplo, quando uma string é passada como parâmetro, quando o esperado é um número)
+401 | Unauthorized | Existe algum problema com sua credencial - ela pode ter sido infomada incorretamente, estar expirada ou não ter acesso ao recurso em questão
+404 | Not Found | O recurso solicitado não existe
+500 | Internal Server Error | Mensagem genérica que indica alguma falha de processamento no lado do servidor
+
+## Autorizando requisições e identificando usuário com JWT (*Json Web Token*)
+
+#### 1 - Obtenha um token de acesso a partir de seu usuário e senha
+Não tem segredo, basta ter guardado em algum lugar, seu usuário e sua senha.
+
+#### 2 - Envie o token de acesso para API
+Depois de ter obtido o token de acesso, você deve envia-lo em todas as requisições em um header "Authorization".
+Não se esqueça de colocar também o prefixo **Bearer**, como no exemplo abaixo:
+
+```
+Authorization: Bearer <token>
+```
+
+#### 3 - Renove o token de acesso, se for necessário!
+Os token de acesso tem tempo de vida limitado. Quando ele tiver expirado, será necessário obter um novo token de acesso,
+isto pode ser feito voltando no **passo 1**. O tempo de vida de um token é informado quando um login é realizado. Exemplo de resposta:
+
+```json
+{
+  "user": "...",
+  "token": "...",
+  "expiresIn": 1200
+}
+```
+
+## Código de Erros
+O formato retornado pela API é padronizado para todas as requisições. A resposta
+retornada contém obrigatoriamente os campos `code` e `error`. Além dos campos obrigatórios
+pode aparecer campos extras contendo mais detalhes sobre os erros. Exemplo:
+
+```json
+{
+  "code": "not_found",
+  "error": "Ferramenta não encontrada"
+}
+```
+
+#### Tabela de erros
+
+| HTTP status code | Código                 | Descrição                                                                           |
+|------------------|------------------------|-------------------------------------------------------------------------------------|
+| 400              | bad_request            | Contém dados inválidos na requisição                                                |
+| 401              | unauthorized           | Requer autenticação                                                                 |
+| 403              | permission_denied      | O cliente não tem permissão para fazer a requisição                                 |
+| 404              | not_found              | Recurso não encontrado                                                              |
+
+# Group Referência
+
+<!-- include(resources/tools/tools.apib) -->

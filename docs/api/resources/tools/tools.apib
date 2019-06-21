@@ -1,0 +1,80 @@
+## Coleção de Ferramentas [/tools{?tag}]
+Criar ou listar ferramentas.
+
+### Listando [GET]
+
++ Parameters
+    + tag: `nodejs` (optional, string) - Filtrar por tag
+
++ Request Listando (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
++ Response 200 (application/json)
+    + Attributes (array[ToolResponse])
+
+
+### Adicionando [POST]
+
+#### Atributos disponíveis
+
+| Atributo    | Tipo          | Obrigatório | Descrição               |
+|------------ |:-------------:|:-----------:|-------------------------|
+| title       | string        | **SIM**     | Titulo da ferramenta    |
+| link        | string        | NÃO         | URL para ferramenta     |
+| description | string        | NÃO         | Descrição da ferramenta |
+| tags        | array[string] | NÃO         | Tags relacionadas       |
+
++ Request Adicionando (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
+    + Attributes (ToolBase)
+
++ Response 201 (application/json)
+    + Attributes (ToolResponse)
+
++ Response 400 (application/json)
+    + Attributes (ToolError400)
+
++ Response 401 (application/json)
+    + Attributes (ToolError401)
+
+
+## Ferramenta [/tools/{id}]
+Alterar ou excluir uma ferramenta.
+
++ Parameters
+  + id: `5d0abbce762b5779d92bdbb0` (required, string) - ID da ferramenta
+
+### Alterando [PUT]
+
++ Request Alterando (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
+    + Attributes (ToolBase)
+
++ Response 200 (application/json)
+    + Attributes (ToolResponse)
+
+### Excluindo [DELETE]
+
++ Request Excluindo (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
++ Response 204
+
++ Response 404
+    + Attributes (ToolError404)
+
+<!-- include(data-structure.apib) -->
