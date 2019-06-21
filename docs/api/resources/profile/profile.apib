@@ -1,0 +1,37 @@
+## Perfil [/me]
+
+### Informações [GET]
+
++ Request Pegando informações (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
++ Response 200
+    + Attributes (UserResponse)
+
+
+### Alterando [PUT]
+
++ Request Alterando informações (application/json)
+    + Attributes (UserBase)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
++ Response 200
+    + Attributes (UserBase)
+
+
++ Request Email invalido (application/json)
+    + Attributes (UserBase)
+      + email: `email` (required, string)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
++ Response 400 (application/json)
+    + Attributes (UserError400)

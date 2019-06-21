@@ -1,4 +1,4 @@
-## Coleção de Ferramentas [/tools{?tag}]
+## Ferramentas [/tools{?tag}]
 Criar ou listar ferramentas.
 
 ### Listando [GET]
@@ -45,13 +45,10 @@ Criar ou listar ferramentas.
     + Attributes (ToolError401)
 
 
-## Ferramenta [/tools/{id}]
-Alterar ou excluir uma ferramenta.
+### Alterando [PUT /tools/{id}]
 
 + Parameters
   + id: `5d0abbce762b5779d92bdbb0` (required, string) - ID da ferramenta
-
-### Alterando [PUT]
 
 + Request Alterando (application/json)
 
@@ -64,7 +61,10 @@ Alterar ou excluir uma ferramenta.
 + Response 200 (application/json)
     + Attributes (ToolResponse)
 
-### Excluindo [DELETE]
+### Excluindo [DELETE /tools/{id}]
+
++ Parameters
+  + id: `5d0abbce762b5779d92bdbb0` (required, string) - ID da ferramenta
 
 + Request Excluindo (application/json)
 
@@ -76,5 +76,3 @@ Alterar ou excluir uma ferramenta.
 
 + Response 404
     + Attributes (ToolError404)
-
-<!-- include(data-structure.apib) -->
