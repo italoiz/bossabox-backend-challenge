@@ -5,10 +5,10 @@
   "author": "Italo Izaac <italoiz.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "docs": "npx aglio -i docs/api/index.apib -t onlicar --theme-full-width --theme-template triple -o docs/api/index.html",
     "dev": "nodemon src/server.js --ignore __tests__",
     "dev:docs": "npm run docs -- -s",
-    "test": "cross-env NODE_ENV=test jest"
+    "test": "cross-env NODE_ENV=test jest",
+    "build:docs": "npx aglio -i docs/api/index.apib -t onlicar --theme-full-width --theme-template triple -o docs/api/index.html"
   },
   "husky": {
     "hooks": {
@@ -17,14 +17,17 @@
     }
   },
   "lint-staged": {
+    "docs/**/*.(apib,html)": [
+      "npm run build:docs",
+      "git add"
+    ],
     "src/**/*.js": [
       "eslint --fix",
-      "aglio -i docs/api/index.apib -t onlicar --theme-full-width --theme-template triple -o docs/index.html",
       "git add"
     ],
     "__tests__/**/*.js": [
       "eslint --fix",
-      "jest --bail --findRelatedTests --runInBand",
+      "NODE_ENV=test jest --bail --findRelatedTests --runInBand",
       "git add"
     ]
   },
