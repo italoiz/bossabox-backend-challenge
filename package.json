@@ -19,6 +19,7 @@
   "lint-staged": {
     "src/**/*.js": [
       "eslint --fix",
+      "aglio -i docs/api/index.apib -t onlicar --theme-full-width --theme-template triple -o docs/index.html",
       "git add"
     ],
     "__tests__/**/*.js": [
@@ -32,22 +33,17 @@
     "@commitlint/config-conventional": "^8.0.0",
     "aglio": "^2.3.0",
     "aglio-theme-onlicar": "^1.6.4",
-    "aglio-theme-vinila": "^0.0.15",
     "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-prettier": "^5.0.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
     "husky": "^2.4.1",
     "jest": "^24.8.0",
     "lint-staged": "^8.2.1",
-    "mongodb-memory-server": "^5.1.5",
     "nodemon": "^1.19.1",
-    "prettier": "^1.18.2",
     "supertest": "^4.0.2"
   },
   "dependencies": {
