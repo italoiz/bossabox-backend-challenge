@@ -9,7 +9,7 @@ module.exports = (err, req, res, next) => {
 
     return res.status(400).json({
       code: 'bad_request',
-      error: 'Alguns dados estão inválidos, por favor, corrija e tente novamente',
+      error: 'Oops! Erro ao tentar processar a requisição.',
       details: errors
     })
   }

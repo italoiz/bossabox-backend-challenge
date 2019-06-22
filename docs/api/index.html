@@ -156,7 +156,7 @@ pode aparecer campos extras contendo mais detalhes sobre os erros. Exemplo:</p>
 <p>Se você tiver logado e esta opção for igual a <code>true</code> retornará apenas suas ferramentas cadastradas,
 se for <code>false</code> retornará todas as ferramentas <strong>exceto</strong> as que você cadastrou. Se você não informar
 este parâmetro será retornar ambos (as suas e de outros usuários).</p>
-</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://api.vuttr-challenge.com/v1</span>/tools</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Adicionando</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer &lt;token&gt;</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+</dd></dl></div></div></div><hr class="split"><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">http://api.vuttr-challenge.com/v1</span>/tools</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Adicionando</span><span class="tab-button">Sem titulo</span><span class="tab-button">Sem autorização</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer &lt;token&gt;</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"AdonisJS"</span></span>,
   "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"https://adonisjs.com/"</span></span>,
   "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"foo bar description"</span></span>,
@@ -190,7 +190,7 @@ este parâmetro será retornar ambos (as suas e de outros usuários).</p>
     <span class="hljs-string">"title"</span>,
     <span class="hljs-string">"tags"</span>
   ]
-</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">201</span><span class="tab-button">400</span><span class="tab-button">401</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">201</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">_id</span>": <span class="hljs-value"><span class="hljs-string">"5d0abbce762b5779d92bdbb0"</span></span>,
   "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"AdonisJS"</span></span>,
   "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"https://adonisjs.com/"</span></span>,
@@ -230,9 +230,46 @@ este parâmetro será retornar ambos (as suas e de outros usuários).</p>
     <span class="hljs-string">"title"</span>,
     <span class="hljs-string">"tags"</span>
   ]
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer &lt;token&gt;</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"``"</span></span>,
+  "<span class="hljs-attribute">link</span>": <span class="hljs-value"><span class="hljs-string">"https://adonisjs.com/"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"foo bar description"</span></span>,
+  "<span class="hljs-attribute">tags</span>": <span class="hljs-value">[
+    <span class="hljs-string">"nodejs"</span>,
+    <span class="hljs-string">"react"</span>,
+    <span class="hljs-string">"react native"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Titulo da ferramenta."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">link</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"URL da ferramenta."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Descrição da ferramenta."</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">tags</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Tags relacionadas."</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"title"</span>,
+    <span class="hljs-string">"tags"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">400</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"bad_request"</span></span>,
-  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"O campo nome não pode ser vazio"</span>
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Oops! Erro ao tentar processar a requisição."</span></span>,
+  "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+    <span class="hljs-string">"Informe um nome para ferramenta"</span>
+  ]
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -244,13 +281,17 @@ este parâmetro será retornar ambos (as suas e de outros usuários).</p>
     "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mensagem de erro"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">details</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Detalhe da mensagem"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
     <span class="hljs-string">"code"</span>,
     <span class="hljs-string">"error"</span>
   ]
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">401</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"unauthorized"</span></span>,
   "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Token inválido"</span>
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
@@ -491,7 +532,10 @@ este parâmetro será retornar ambos (as suas e de outros usuários).</p>
   ]
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">400</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"bad_request"</span></span>,
-  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"E-mail inválido"</span>
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value"><span class="hljs-string">"Oops! Erro ao tentar processar a requisição."</span></span>,
+  "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+    <span class="hljs-string">"Insira um e-mail válido"</span>
+  ]
 </span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
   "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
   "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
@@ -503,6 +547,10 @@ este parâmetro será retornar ambos (as suas e de outros usuários).</p>
     "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
       "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
       "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Mensagem de erro"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">details</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Detalhe da mensagem"</span>
     </span>}
   </span>}</span>,
   "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
