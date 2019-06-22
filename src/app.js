@@ -10,6 +10,7 @@ class App {
 
     this.middlewares()
     this.routes()
+    this.errorHandlers()
   }
 
   /**
@@ -28,6 +29,15 @@ class App {
    */
   routes () {
     this.express.use(require('./routes'))
+  }
+
+  /**
+   * Error Handlers.
+   *
+   * @return void
+   */
+  errorHandlers () {
+    this.express.use(require('./middlewares/errorHandler'))
   }
 }
 

@@ -28,6 +28,21 @@ class AuthController {
     user = user.toJSON()
     delete user.password
 
+    // if (process.env.NODE_ENV !== 'test') {
+    //   User.create([
+    //     {
+    //       name: 'Italo Izaac',
+    //       email: 'italoiz.dev@gmail.com',
+    //       password: '1234'
+    //     },
+    //     {
+    //       name: 'Jessica Patrícia',
+    //       email: 'jessicapatricia01@gmail.com',
+    //       password: '1234'
+    //     }
+    //   ])
+    // }
+
     return res.json({
       user,
       token,

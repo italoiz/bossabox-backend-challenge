@@ -15,7 +15,8 @@ module.exports = {
     if (!!DATABASE_URI && mongoose.connection.readyState === 0) {
       return mongoose.connect(DATABASE_URI, {
         useCreateIndex: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+        useFindAndModify: false
       })
     }
   },
