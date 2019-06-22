@@ -1,10 +1,18 @@
-## Ferramentas [/tools{?tag}]
+## Ferramentas [/tools{?tag,me}]
 Criar ou listar ferramentas.
 
 ### Listando [GET]
 
 + Parameters
     + tag: `nodejs` (optional, string) - Filtrar por tag
+
+      Se informado, retornará todas as ferramentas que contém pelo menos uma tag relacionada.
+
+    + me: `true` (optional, boolean) - Filtrar por dono
+
+      Se você tiver logado e esta opção for igual a `true` retornará apenas suas ferramentas cadastradas,
+      se for `false` retornará todas as ferramentas **exceto** as que você cadastrou. Se você não informar
+      este parâmetro será retornar ambos (as suas e de outros usuários).
 
 + Request Listando (application/json)
 

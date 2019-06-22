@@ -1,17 +1,17 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const User = require('../../src/models/User');
+const User = require('../../src/models/User')
 
 describe('Model | User', () => {
   it('should encrypt user password correctly', async () => {
-    const { password: user_password } = await User.create({
+    const { password: userPassword } = await User.create({
       name: 'Foo Bar',
       email: 'foo@bar.com',
       password: '1234'
     })
 
-    const compareHash = await bcrypt.compare('1234', user_password)
+    const compareHash = await bcrypt.compare('1234', userPassword)
 
     expect(compareHash).toBe(true)
   })

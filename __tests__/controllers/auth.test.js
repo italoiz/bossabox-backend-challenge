@@ -2,7 +2,7 @@ const request = require('supertest')
 const jwt = require('jsonwebtoken')
 
 const app = require('../../src/app')
-const User = require('../../src/models/User');
+const User = require('../../src/models/User')
 
 describe('Controller | Auth', () => {
   it('should be able to sign in with a valid credentials', async () => {
@@ -142,12 +142,12 @@ describe('Controller | Auth', () => {
 
     // expired token
     const token = await jwt.sign({ id: user.id }, process.env.SECRET, {
-      expiresIn: '-10s',
-    });
+      expiresIn: '-10s'
+    })
 
     const response = await request(app)
-        .get('/me')
-        .set('Authorization', `Bearer ${token}`)
+      .get('/me')
+      .set('Authorization', `Bearer ${token}`)
 
     expect(response.status).toBe(401)
   })

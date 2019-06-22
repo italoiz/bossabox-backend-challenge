@@ -1,13 +1,25 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { Schema, model } = require('mongoose')
+const yup = require('yup')
 
 const { expiresIn } = require('../config/session')
 
 const UserSchema = new Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true, lowercase: true },
+    name: {
+      type: String,
+      required: [true, 'É necessário informar um nome']
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      validate: [function (value) {
+        return yup.string().email().isValid(value)
+      }, 'O e-mail informado não válido']
+    },
     password: { type: String, required: true }
   },
   {
