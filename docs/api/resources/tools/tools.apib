@@ -46,8 +46,20 @@ Criar ou listar ferramentas.
 + Response 201 (application/json)
     + Attributes (ToolResponse)
 
+
++ Request Sem titulo (application/json)
+    + Headers
+
+                    Authorization: Bearer <token>
+
+    + Attributes (ToolBase)
+      + title: ``
+
 + Response 400 (application/json)
     + Attributes (ToolError400)
+
+
++ Request Sem autorização (application/json)
 
 + Response 401 (application/json)
     + Attributes (ToolError401)
