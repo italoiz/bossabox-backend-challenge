@@ -1,0 +1,28 @@
+## Usuários [/users]
+
+### Cadastrando [POST]
+
+Quando o cadastro do usuário e efetuado com sucesso retornaremos a **token** para que logo
+em seguida seja possível enviar o usuário para uma área logada caso necessário.
+
+Confira a tabela abaixo e veja quais campos são necessário para realizar o cadastro.
+
+| Atributo    | Tipo          | Obrigatório | Descrição               |
+|------------ |:-------------:|:-----------:|-------------------------|
+| name        | string        | **SIM**     | Nome do usuário         |
+| email       | string        | **SIM**     | Um e-mail válido        |
+| password    | string        | **SIM**     | Senha                   |
+
++ Request Usuário válido
+    + Attributes (UserPasswordBase)
+
++ Response 200 (application/json)
+    + Attributes (UserSuccessfully)
+
+
++ Request Usuário inválido
+    + Attributes (UserPasswordBase)
+      + email: `email-errado` (required, string) - E-mail do usuário
+
++ Response 400 (application/json)
+    + Attributes (UserUnsuccessfully)

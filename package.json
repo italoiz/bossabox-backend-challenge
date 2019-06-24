@@ -1,20 +1,20 @@
 {
-  "name": "backend",
+  "name": "vuttr-bossabox-backend",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Italo Izaac <italoiz.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/server.js",
-    "dev": "nodemon src/server.js --ignore __tests__",
-    "dev:docs": "npm run build:docs -- -s",
-    "test": "cross-env NODE_ENV=test jest",
-    "build:docs": "npx aglio -i docs/api/index.apib -t onlicar --theme-full-width --theme-template triple -o docs/api/index.html",
-    "postbuild:docs": "git add docs/api/index.html"
+    "dev": "cross-env NODE_ENV=development nodemon src/server.js --ignore __tests__",
+    "dev:docs": "yarn build:docs -- -s",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
+    "test:coverage": "yarn test && cat ./__tests__/coverage/lcov.info | coveralls",
+    "build:docs": "aglio -i docs/api/index.apib -t onlicar --theme-full-width --theme-template triple -o docs/api/index.html"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run build:docs && lint-staged",
+      "pre-commit": "lint-staged",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
@@ -32,8 +32,10 @@
   "devDependencies": {
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
+    "@commitlint/travis-cli": "^8.0.0",
     "aglio": "^2.3.0",
     "aglio-theme-onlicar": "^1.6.4",
+    "coveralls": "^3.0.4",
     "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.17.3",
@@ -48,8 +50,8 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "cross-env": "^5.2.0",
     "bcryptjs": "^2.4.3",
+    "cross-env": "^5.2.0",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",

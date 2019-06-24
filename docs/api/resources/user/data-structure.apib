@@ -1,0 +1,19 @@
+# Data Structures
+
+## UserBase
++ name: `Foo Bar` (required, string) - Nome do usuário
++ email: `foo@bar.com` (required, string) - E-mail do usuário
+
+## UserPasswordBase
++ Include (UserBase)
++ password: `1234` (required, string) - Senha do usuário
+
+## UserSuccessfully
++ _id: `5d0abbce762b5779d92bdba9` (required, string) - ID do usuário
++ Include (UserBase)
++ token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkMGFiYmNlNzYyYjU3NzlkOTJiZGJhOSIsImlhdCI6MTUxNjIzOTAyMn0.35gBbPuyyxc1UKgB2xBVIVBoBL7UPQu_ZFlddzp65hM`
+
+## UserUnsuccessfully
++ code: `bad_request` (required, string) - Código de error
++ error: `Oops! Erro ao tentar processar a requisição.` (required, string) - Mensagem do erro
++ details: `Digite um e-mail válido` (required, array[string]) - Detalhes do erro

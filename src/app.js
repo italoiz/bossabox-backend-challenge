@@ -28,7 +28,7 @@ class App {
    * @return void
    */
   routes () {
-    this.express.use(require('./routes'))
+    this.express.use('/v1', require('./routes'))
   }
 
   /**

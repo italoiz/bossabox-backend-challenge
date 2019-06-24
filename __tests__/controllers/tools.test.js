@@ -54,7 +54,7 @@ describe('Controller | Tools', () => {
     await Tool.create(tools)
 
     const response = await request(app)
-      .get('/tools')
+      .get('/v1/tools')
 
     expect(response.body).toBeArray()
   })
@@ -63,7 +63,7 @@ describe('Controller | Tools', () => {
     await Tool.create(tools)
 
     const response = await request(app)
-      .get('/tools')
+      .get('/v1/tools')
 
     expect(response.body).toBeArrayOfSize(2)
   })
@@ -74,7 +74,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .get('/tools')
+      .get('/v1/tools')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.body).toBeArrayOfSize(4)
@@ -101,7 +101,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .get('/tools')
+      .get('/v1/tools')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.body).toBeArrayOfSize(4)
@@ -127,7 +127,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .get('/tools')
+      .get('/v1/tools')
       .query({ me: true })
       .set('Authorization', `Bearer ${token}`)
 
@@ -154,7 +154,7 @@ describe('Controller | Tools', () => {
     const token = await anotherAuthor.generateToken()
 
     const response = await request(app)
-      .get('/tools')
+      .get('/v1/tools')
       .query({ me: false })
       .set('Authorization', `Bearer ${token}`)
 
@@ -165,7 +165,7 @@ describe('Controller | Tools', () => {
     await Tool.create(tools)
 
     const response = await request(app)
-      .get('/tools')
+      .get('/v1/tools')
       .query({ tag: 'facebook' })
 
     expect(response.body).toBeArrayOfSize(1)
@@ -176,7 +176,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .post('/tools')
+      .post('/v1/tools')
       .set('Authorization', `Bearer ${token}`)
       .send(tool)
 
@@ -188,7 +188,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .post('/tools')
+      .post('/v1/tools')
       .set('Authorization', `Bearer ${token}`)
       .send(tool)
 
@@ -207,7 +207,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .post('/tools')
+      .post('/v1/tools')
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: tool.name
@@ -223,7 +223,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     await request(app)
-      .put(`/tools/${tool._id}`)
+      .put(`/v1/tools/${tool._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'foo bar tool'
@@ -241,7 +241,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .put(`/tools/${tool._id}`)
+      .put(`/v1/tools/${tool._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'foo bar tool'
@@ -257,7 +257,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .put(`/tools/5d0c3553bf1d3886da65805c`)
+      .put('/v1/tools/5d0c3553bf1d3886da65805c')
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'foo bar tool'
@@ -277,13 +277,28 @@ describe('Controller | Tools', () => {
     const tool = await Tool.create(getRandomItem(tools))
 
     const response = await request(app)
-      .put(`/tools/${tool._id}`)
+      .put(`/v1/tools/${tool._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: 'foo bar tool'
       })
 
     expect(response.status).toBe(403)
+  })
+
+  it('should not be able to update a tool when data is invalid', async () => {
+    const tool = await Tool.create(getRandomItem(tools))
+
+    const token = await author.generateToken()
+
+    const response = await request(app)
+      .put(`/v1/tools/${tool._id}`)
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        name: ''
+      })
+
+    expect(response.status).toBe(400)
   })
 
   it('should be able delete a tool', async () => {
@@ -293,7 +308,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .delete(`/tools/${tool._id}`)
+      .delete(`/v1/tools/${tool._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send()
 
@@ -304,7 +319,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     const response = await request(app)
-      .delete(`/tools/5d0c3553bf1d3886da65805c`)
+      .delete('/v1/tools/5d0c3553bf1d3886da65805c')
       .set('Authorization', `Bearer ${token}`)
       .send()
 
@@ -322,7 +337,7 @@ describe('Controller | Tools', () => {
     const tool = await Tool.create(getRandomItem(tools))
 
     const response = await request(app)
-      .delete(`/tools/${tool._id}`)
+      .delete(`/v1/tools/${tool._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send()
 
@@ -336,7 +351,7 @@ describe('Controller | Tools', () => {
     const token = await author.generateToken()
 
     await request(app)
-      .delete(`/tools/${tool._id}`)
+      .delete(`/v1/tools/${tool._id}`)
       .set('Authorization', `Bearer ${token}`)
       .send()
 

@@ -15,7 +15,7 @@ describe('Controller | Profile', () => {
     const token = await user.generateToken()
 
     const response = await request(app)
-      .get('/me')
+      .get('/v1/me')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.body).toMatchObject({
@@ -36,7 +36,7 @@ describe('Controller | Profile', () => {
     const token = await user.generateToken()
 
     const response = await request(app)
-      .get('/me')
+      .get('/v1/me')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.body).not.toHaveProperty('password')
@@ -53,7 +53,7 @@ describe('Controller | Profile', () => {
     const token = await user.generateToken()
 
     const response = await request(app)
-      .put('/me')
+      .put('/v1/me')
       .set('Authorization', `Bearer ${token}`)
       .send({
         email: 'new-foo@bar.com'
@@ -73,7 +73,7 @@ describe('Controller | Profile', () => {
     const token = await user.generateToken()
 
     const response = await request(app)
-      .put('/me')
+      .put('/v1/me')
       .set('Authorization', `Bearer ${token}`)
       .send({
         email: 'new-foo@bar.com'
@@ -93,12 +93,63 @@ describe('Controller | Profile', () => {
     const token = await user.generateToken()
 
     const response = await request(app)
-      .put('/me')
+      .put('/v1/me')
       .set('Authorization', `Bearer ${token}`)
       .send({
         name: null
       })
 
     expect(response.status).toBe(400)
+  })
+
+  it('should be able to update password', async () => {
+    const user = await User.create({
+      name: 'Foo Bar',
+      email: 'foo@bar.com',
+      password: '1234'
+    })
+
+    // token
+    const token = await user.generateToken()
+
+    const updateResponse = await request(app)
+      .put('/v1/me')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        password: '4321'
+      })
+
+    const authResponse = await request(app)
+      .post('/v1/auth')
+      .send({
+        email: user.email,
+        password: '4321'
+      })
+
+    expect(updateResponse.status).toBe(200)
+    expect(authResponse.status).toBe(200)
+  })
+
+  it('should not be able to update non existent user', async () => {
+    const user = await User.create({
+      name: 'Foo Bar',
+      email: 'foo@bar.com',
+      password: '1234'
+    })
+
+    // token
+    const token = await user.generateToken()
+
+    // remove user before request
+    await user.remove()
+
+    const response = await request(app)
+      .put('/v1/me')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        password: '4321'
+      })
+
+    expect(response.status).toBe(404)
   })
 })

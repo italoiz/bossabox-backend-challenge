@@ -20,7 +20,7 @@ const UserSchema = new Schema(
         return yup.string().email().isValid(value)
       }, 'O e-mail informado não válido']
     },
-    password: { type: String, required: true }
+    password: { type: String, required: [true, 'Digite uma senha válida'] }
   },
   {
     timestamps: true,

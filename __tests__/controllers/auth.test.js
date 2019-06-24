@@ -13,7 +13,7 @@ describe('Controller | Auth', () => {
     })
 
     const response = await request(app)
-      .post('/auth')
+      .post('/v1/auth')
       .send({
         email,
         password: '1234'
@@ -24,7 +24,7 @@ describe('Controller | Auth', () => {
 
   it('should not be able sign in with a invalid user', async () => {
     const response = await request(app)
-      .post('/auth')
+      .post('/v1/auth')
       .send({
         email: 'foo@bar.com',
         password: '1234'
@@ -41,7 +41,7 @@ describe('Controller | Auth', () => {
     })
 
     const response = await request(app)
-      .post('/auth')
+      .post('/v1/auth')
       .send({
         email,
         password: '12345'
@@ -58,7 +58,7 @@ describe('Controller | Auth', () => {
     })
 
     const response = await request(app)
-      .post('/auth')
+      .post('/v1/auth')
       .send({
         email,
         password: '1234'
@@ -78,7 +78,7 @@ describe('Controller | Auth', () => {
     const token = await user.generateToken()
 
     const response = await request(app)
-      .get('/me')
+      .get('/v1/me')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.status).toBe(200)
@@ -86,14 +86,14 @@ describe('Controller | Auth', () => {
 
   it('should not be able to access private routes when not authenticated', async () => {
     const response = await request(app)
-      .get('/me')
+      .get('/v1/me')
 
     expect(response.status).toBe(401)
   })
 
   it('should not be able to access private routes with a invalid token', async () => {
     const response = await request(app)
-      .get('/me')
+      .get('/v1/me')
       .set('Authorization', `Bearer 1234`)
 
     expect(response.status).toBe(401)
@@ -107,7 +107,7 @@ describe('Controller | Auth', () => {
     })
 
     const response = await request(app)
-      .post('/auth')
+      .post('/v1/auth')
       .send({
         email,
         password: '1234'
@@ -124,7 +124,7 @@ describe('Controller | Auth', () => {
     })
 
     const response = await request(app)
-      .post('/auth')
+      .post('/v1/auth')
       .send({
         email,
         password: '1234'
@@ -146,7 +146,7 @@ describe('Controller | Auth', () => {
     })
 
     const response = await request(app)
-      .get('/me')
+      .get('/v1/me')
       .set('Authorization', `Bearer ${token}`)
 
     expect(response.status).toBe(401)
