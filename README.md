@@ -71,7 +71,7 @@ $ yarn dev
 Se você configurou alguma porta de execução do servidor, acesse com a porta configurada assim
 `http://localhost:PORT`. Se você não configurou porta alguma, acesso com `http//localhost:3333`.
 
-Se para sessão [Utilizando a API](#utilizando-a-api) e saiba como usar a API de forma simples e rápida 👌
+Vá para sessão [Utilizando a API](#utilizando-a-api) e saiba como usar a API de forma simples e rápida 👌
 
 ## Utilizando a API
 
@@ -85,7 +85,7 @@ Isto é muito simples, acesse a documentação da API clicando no link abaixo.
 Há uma versão da API hospedada e rodando para você *brincar* o mais rápido possível, assim você
 não precisa executar o projeto em sua máquina.
 
-Você pode utilizar a API através da seguinte URL: `http://api.vuttr-challenge/v1`
+Você pode utilizar a API através da seguinte URL: `http://api.vuttr-challenge.com/v1`
 
 ## BUGs 🐛
 
