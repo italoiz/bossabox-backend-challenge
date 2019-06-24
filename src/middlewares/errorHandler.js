@@ -14,6 +14,12 @@ module.exports = (err, req, res, next) => {
     })
   }
 
+  // log in development
+  if (process.env.NODE_ENV === 'development') {
+    /* istanbul ignore next */
+    console.log(err.message)
+  }
+
   return res.status(500).json({
     code: 'server_error',
     error: 'Desculpe!!! Estamos com algum problema, por favor, se o problema persistir entre em contato através do e-mail italoiz.dev@gmail.com'

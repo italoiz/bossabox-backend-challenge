@@ -5,7 +5,7 @@ class ProfileController {
   /**
    * GET /tools
    */
-  async index (req, res, next) {
+  async index (req, res) {
     const { me = undefined, tag = '' } = req.query
 
     // default query
@@ -43,14 +43,10 @@ class ProfileController {
       }
     }
 
-    try {
-      const tools = await Tool.find(query)
-        .populate('author', '-password')
+    const tools = await Tool.find(query)
+      .populate('author', '-password')
 
-      return res.json(tools)
-    } catch (err) {
-      return next(err)
-    }
+    return res.json(tools)
   }
 
   /**

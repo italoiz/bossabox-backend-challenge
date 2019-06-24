@@ -6,16 +6,20 @@ const routes = new Router()
 const privateMiddleware = require('./middlewares/private')
 const loggedInMiddleware = require('./middlewares/loggedIn')
 
-// Controllers
+// controllers
 const AuthController = require('./controllers/AuthController')
 const ProfileController = require('./controllers/ProfileController')
 const ToolController = require('./controllers/ToolController')
+const UserController = require('./controllers/UserController')
 
 // authentication route
 routes.post('/auth', AuthController.store)
 
 // logged in middleware.
 routes.use(loggedInMiddleware)
+
+// register user route
+routes.post('/users', UserController.store)
 
 // tools route
 routes.get('/tools', ToolController.index)
