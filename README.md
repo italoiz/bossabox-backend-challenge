@@ -10,9 +10,9 @@
 
 <div align="center">
 
-  ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/italoiz/bossabox-backend-challenge/master.svg?color=0A5184&label=version)<space>
-  ![Travis (.org) branch](https://img.shields.io/travis/italoiz/bossabox-backend-challenge/master.svg?color=0A5184)<space>
-  ![Coveralls github branch](https://img.shields.io/coveralls/github/italoiz/bossabox-backend-challenge/master.svg?color=0A5184)
+  [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/italoiz/bossabox-backend-challenge/master.svg?color=0A5184&label=version)](#visão-geral)<space>
+  [![Travis (.org) branch](https://img.shields.io/travis/italoiz/bossabox-backend-challenge/master.svg?color=0A5184)](https://travis-ci.org/italoiz/bossabox-backend-challenge)<space>
+  [![Coveralls github branch](https://img.shields.io/coveralls/github/italoiz/bossabox-backend-challenge/master.svg?color=0A5184)](https://coveralls.io/github/italoiz/bossabox-backend-challenge?branch=master)
 
 </div>
 
