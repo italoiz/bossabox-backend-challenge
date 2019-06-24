@@ -28,7 +28,8 @@ Esta aplicação foi contruída utilizando **NodeJS**, bando de dados **NoSQL Mo
 
 - [Instalando](#instalando)
 - [Utilizando a API](#utilizando-a-api)
-- [Versão Online](#versao-online)
+- [Versão Online 🌎](#versão-online-🌎)
+- [BUGs 🐛](#bugs-🐛)
 - [Licença](#licença)
 
 ## Instalando
