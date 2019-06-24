@@ -1,0 +1,99 @@
+## Ferramentas [/tools{?tag,me}]
+Criar ou listar ferramentas.
+
+### Listando [GET]
+
++ Parameters
+    + tag: `nodejs` (optional, string) - Filtrar por tag
+
+      Se informado, retornará todas as ferramentas que contém pelo menos uma tag relacionada.
+
+    + me: `true` (optional, boolean) - Filtrar por dono
+
+      Se você tiver logado e esta opção for igual a `true` retornará apenas suas ferramentas cadastradas,
+      se for `false` retornará todas as ferramentas **exceto** as que você cadastrou. Se você não informar
+      este parâmetro será retornar ambos (as suas e de outros usuários).
+
++ Request Listando (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
++ Response 200 (application/json)
+    + Attributes (array[ToolResponse])
+
+
+### Adicionando [POST]
+
+#### Atributos disponíveis
+
+| Atributo    | Tipo          | Obrigatório | Descrição               |
+|------------ |:-------------:|:-----------:|-------------------------|
+| title       | string        | **SIM**     | Titulo da ferramenta    |
+| link        | string        | NÃO         | URL para ferramenta     |
+| description | string        | NÃO         | Descrição da ferramenta |
+| tags        | array[string] | NÃO         | Tags relacionadas       |
+
++ Request Adicionando (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
+    + Attributes (ToolBase)
+
++ Response 201 (application/json)
+    + Attributes (ToolResponse)
+
+
++ Request Sem titulo (application/json)
+    + Headers
+
+                    Authorization: Bearer <token>
+
+    + Attributes (ToolBase)
+      + title: ``
+
++ Response 400 (application/json)
+    + Attributes (ToolError400)
+
+
++ Request Sem autorização (application/json)
+
++ Response 401 (application/json)
+    + Attributes (ToolError401)
+
+
+### Alterando [PUT /tools/{id}]
+
++ Parameters
+  + id: `5d0abbce762b5779d92bdbb0` (required, string) - ID da ferramenta
+
++ Request Alterando (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
+    + Attributes (ToolBase)
+
++ Response 200 (application/json)
+    + Attributes (ToolResponse)
+
+
+### Excluindo [DELETE /tools/{id}]
+
++ Parameters
+  + id: `5d0abbce762b5779d92bdbb0` (required, string) - ID da ferramenta
+
++ Request Excluindo (application/json)
+
+    + Headers
+
+                Authorization: Bearer <token>
+
++ Response 204
+
++ Response 404
+    + Attributes (ToolError404)

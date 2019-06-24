@@ -1,0 +1,24 @@
+# Data Structures
+
+## ToolBase
++ title: `AdonisJS` (required, string) - Titulo da ferramenta.
++ link: `https://adonisjs.com/` (optional, string) - URL da ferramenta.
++ description: `foo bar description` (optional, string) - Descrição da ferramenta.
++ tags: `nodejs`, `react`, `react native` (required, array[string]) - Tags relacionadas.
+
+## ToolResponse
++ _id: `5d0abbce762b5779d92bdbb0` (required, string) - ID da ferramenta.
++ Include (ToolBase)
+
+## ToolError400
++ code: `bad_request` (required, string) - Código de erro
++ error: `Oops! Erro ao tentar processar a requisição.` (required, string) - Mensagem de erro
++ details: `Informe um nome para ferramenta` (optional, array[string]) - Detalhe da mensagem
+
+## ToolError401
++ code: `unauthorized` (required, string) - Código de erro
++ error: `Token inválido` (required, string) - Mensagem de erro
+
+## ToolError404
++ code: `not_found` (required, string) - Código de erro
++ error: `Ferramenta não encontrada` (required, string) - Mensagem de erro
