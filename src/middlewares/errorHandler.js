@@ -15,8 +15,8 @@ module.exports = (err, req, res, next) => {
   }
 
   // log in development
+  /* istanbul ignore next */
   if (process.env.NODE_ENV === 'development') {
-    /* istanbul ignore next */
     console.log(err.message)
   }
 

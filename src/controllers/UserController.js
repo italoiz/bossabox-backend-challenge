@@ -32,7 +32,7 @@ class UserController {
       // convert to json
       user = user.toJSON()
 
-      // remove password property
+      /* istanbul ignore else */ // remove password property
       if (user.password) {
         delete user.password
       }
